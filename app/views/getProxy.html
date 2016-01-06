@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+      <style type="text/css">
+          #TextArea1
+          {
+              height: 147px;
+              width: 243px;
+          }
+          #txProxy
+          {
+              height: 137px;
+              width: 209px;
+          }
+      </style>
+  </head>
+  <body>
+    <h1><%= title %>
+    <form action="getProxy" method="post">
+        <textarea id="doc" name="doc"></textarea></h1>
+		<input type="text" name="action" value="import"/>
+        <br />
+        <input id="Submit1" type="submit" value="submit" />
+     </form>
+    <p>Welcome to <%= title %></p>
+  </body>
+</html>
