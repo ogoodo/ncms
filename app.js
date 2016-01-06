@@ -1,10 +1,11 @@
 ﻿
 "use strict";
+var log4js = require('log4js');
+log4js.configure(require("./config/log4js.json"));
 let path = require('path');
 
 let koa = require('koa');
 var logger = require('koa-logger');
-var log4js = require('log4js');
 let Router = require('koa-router');
 let bodyParser = require('koa-bodyparser');
 //let render = require('koa-views');
@@ -18,20 +19,21 @@ let backendRoutes = require('./app/routes/backend');
 let frontendRoutes = require('./app/routes/frontend');
 let response = require('./app/middlewares/response');
 
-log4js.configure({
-  appenders: [
-    { type: 'console' },{
-      type: 'file', 
-      filename: 'logs/access.log', 
-      maxLogSize: 1024,
-      backups:4,
-      category: 'normal' 
-    }
-  ],
-  replaceConsole: true
-});
+// log4js.configure({
+//   appenders: [
+//     { type: 'console' },{
+//       type: 'file', 
+//       filename: 'logs/access.log', 
+//       maxLogSize: 1024,
+//       backups:4,
+//       category: 'normal' 
+//     }
+//   ],
+//   replaceConsole: true
+// });
 var logg = log4js.getLogger('app');
 logg.setLevel('DEBUG');
+var logf = log4js.getLogger('log_file');
 
 let backendRouter = new Router({prefix: "/api"});
 let frontendRouter = new Router();
@@ -80,6 +82,7 @@ render(app, {
 app.listen(888);
 //console.log(logg);
 logg.info('服务器启动,端口:' + 888);
+logf.info('服务器启动,端口:' + 888);
 
 app.on('error', function(err, ctx){
 	console.log(err);
