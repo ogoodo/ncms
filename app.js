@@ -18,7 +18,7 @@ let staticServer = require('koa-static');
 // let sessionStore = require('koa-session-mongoose');
 
 let config = require('./config/config');
-let adminRoutes = require('./app/routes/admin');
+let adminRoutes = require('./app/routes/admin/admin');
 let frontRoutes = require('./app/routes/front');
 let response = require('./app/middlewares/response');
 
@@ -34,13 +34,13 @@ app.proxy = true;
 
 //自定义404
 app.use(function *(next){ 
-	logg.debug('404{{');
+	//logg.debug('404{{');
 	yield next; 
 	if (this.body || !this.idempotent){
 		return;
 	}
 	this.redirect('/404.html'); 
-	logg.debug('404}}');
+	//logg.debug('404}}');
 }); 
 
 app

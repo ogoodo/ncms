@@ -13,7 +13,7 @@ function *post(next) {
 function *admin(next) {
     console.log('admin');
 	try{
-		yield this.render('admin', {title:"nodeIDE后台"});
+		yield this.render('admin/admin', {title:"nodeIDE后台"});
 	}catch(e){
 		console.log("错误:"+e.toString());
 	}

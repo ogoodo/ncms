@@ -1,0 +1,67 @@
+*{margin:0;padding:0;border:0;font-weight:400;font-family:"Helvetica Neue",Tahoma,"Microsoft Yahei","Hiragino Sans GB",sans-serif;}
+html,body{height:100%;}
+body{font-size:14px;color:#666;} 
+a{color:#333;text-decoration:none;}
+a:hover{color:#82bb24;}
+ul{list-style:none;}
+ol{padding-left:20px;list-style-type:decimal;}
+input[type="text"],input[type="password"],textarea{font-size:14px;border:1px solid #ddd;border-radius:2px;}
+input[type="text"],input[type="password"]{height:34px;padding-left:8px;padding-right:8px;}
+textarea{padding:8px;}
+input[type="text"]:focus,input[type="password"]:focus,textarea:focus{outline:0;border:1px solid #82bb24;}
+
+.float-left{float:left;}
+.float-right{float:right;}
+
+.header, .ads, .main, .footer {
+  width: 100%;
+  min-width: 980px;
+  clear: both;
+}
+.header{
+  height: 40px;
+  padding: 25px 0;
+  background: #181818;
+}
+.header .home {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  vertical-align: middle;
+  padding-left: 50px;
+  background: url(../img/sitelogo-w.png) no-repeat left top;
+  font-size: 18px;
+  color: #fff;
+}
+.header .home .text-mini{
+    font-size: 12px;
+    color: #82bb24;
+}
+.header .navbar a{
+  display: inline-block;
+  height: 30px;
+  margin: 10px 0 0 40px;
+  padding: 0 10px;
+  border-bottom-width: 0;
+  border-bottom-style: solid;
+  font-size: 16px;
+  color: #666;
+}
+.header .navbar a:hover{
+  color: #fff;
+  border-bottom-width: 4px;
+}
+.header a.active {
+  border-bottom-width: 4px;
+  color: #fff;
+}
+.box{
+  position: relative;
+  width: 960px;
+  margin: 0 auto;
+  padding: 0 10px;
+}
+.nav-blog{border-color:#4493ff;} 
+.nav-soft{border-color:#bb44bb;}
+.nav-doc{border-color:#82bb24;}
+.nav-res{border-color:#f99921;}
