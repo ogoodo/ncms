@@ -12,7 +12,10 @@ var logger = require('koa-logger');
 let Router = require('koa-router');
 let bodyParser = require('koa-bodyparser');
 //let render = require('koa-views');
-let render = require('koa-ejs');
+//let render = require('koa-ejs');
+let render = require('koa-ejs2x');
+//let LRU = require('lru-cache');
+//render.cache = LRU(100); // LRU cache with 100-item limit
 let staticServer = require('koa-static');
 // let session = require('koa-generic-session');
 // let sessionStore = require('koa-session-mongoose');
@@ -39,13 +42,31 @@ app.use(function *(next){
 	if (this.body || !this.idempotent){
 		return;
 	}
-	this.redirect('/404.html'); 
+	//this.redirect('/404.html'); 
+    this.body = '404页面不存在';
 	//logg.debug('404}}');
 }); 
+app.use(function *(next){
+  var start = new Date;
+  yield next;
+  var ms = new Date - start;
+  this.response.lastModified = new Date();
+  this.response.set('Ogoodo.com-Time2', ms + 'ms');
+  this.set('Ogoodo.com-Time', ms + 'ms');
+  this.response.append('Ogoodo.com-Time', ms + '2ms');
+});
+// logger
+app.use(function *(next){
+  var start = new Date;
+  yield next;
+  var ms = new Date - start;
+  console.log('%s %s - %s', this.method, this.url, ms);
+});
 
+app.use(require('koa-static-cache')('/static', {maxAge: 60 * 60}));
 app
 	.use(logger())
-	.use(staticServer(path.join(__dirname, '/public')))
+	.use(staticServer(path.join(__dirname, '/static')))
 	//.use(render(path.join(__dirname, "./app/views"), { default: 'ejs' }))
 	.use(response())
 	.use(bodyParser())
@@ -70,9 +91,13 @@ render(app, {
   viewExt: 'html',
   cache: false,
   debug: true,
-  filters:filters,
+  //locals: global locals, can be function type, this in the function is koa's ctx.
+  //filters:filters,
+//   delimiter:"{{ }}",
+//   open:'{{',
+//   close:'}}',
 });
-	
+
 
 app.listen(config.port);
 //console.log(logg);

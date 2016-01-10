@@ -6,8 +6,9 @@
     <meta name="keywords" content="node开发,node ide,js桌面软件开发" />
     <meta name="description" content="node ide jsIDE开发平台" />
     <link href="/css/global.css" rel="stylesheet" type="text/css" />
-    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <!--script type="text/javascript" src="/js/jquery-1.11.0.min.js"></script-->
+    <link href="/Font-Awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!--script type="text/javascript" src="/jquery/2.2/jquery-2.2.0.min.js"></script-->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
   </head>
   <body>
       <div class="header">
@@ -25,8 +26,23 @@
         </div>
       </div>
       <div class="main">
-          <div class="box"></div>
+          <div class="box">
+                <%# include admin/admin.html %>
+              <% include article_list.html %>
+              <%# partial('article_list') %>  
+              <%# include('article_list.html') %>  
+              <% include index_side.html %>             
+          </div>
       </div>
-      <div class="footer"></div>
+      <div class="footer">
+          <div class="box">
+              <div>
+                  <a href="#">友情链接</a>
+                  <a href="#">友情链接2</a>
+                  <a href="#">友情链接3</a>
+              </div>
+              <div>Copyright © 2016 ogoodo.com  湘ICP备</div>
+          </div>          
+      </div>
   </body>
 </html>

@@ -1,0 +1,69 @@
+
+              <ul>
+                  <% list.forEach(function(item){ %>
+                  <li class="article-item">
+                      <div class="channel"></div>
+                      <a class="title" href='<%=item.url%>'><%= item.title %></a>
+                      <p class="excerpt"><%= item.excerpt %></p>
+                      <div class="infobar text-gray">
+                          <a class="text-gray" href='#'><i class="fa fa-user"></i><%= item.author %></a>
+                          <span><i class="fa fa-clock-o"></i><%= item.date %></span>
+                          <span><i class="fa fa-comment-o"></i><%= item.reply %>回复</span>
+                          <span><i class="fa fa-eye"></i><%= item.see %>浏览</span>
+                          <a class="text-gray" href="javascript:void(0);" onclick="del_article(<%= item.id %>)">
+                              <i class="fa fa-close"></i>删除
+                          </a>
+                          <a class="text-gray" href="javascript:void(0);" onclick="add_article(<%= item.id %>)">
+                              <i class="fa fa-check"></i>添加
+                          </a>
+                          <a class="text-gray" href="javascript:void(0);" onclick="put_article(<%= item.id %>)">
+                              <i class="fa fa-wrench"></i>更新
+                          </a>
+                      </div>
+                  </li>
+                  <% }); %>
+              </ul>
+              <script>
+                  function add_article(id){
+                    alert(id);
+                    $.ajax({
+                        url: '/articles' ,
+                        type: 'POST',
+                        data: {a:'b',c:'d'},
+                        success: function(result) {
+                            alert('add'+result);
+                        },
+                        error: function(result) {
+                            alert('add2'+result);
+                        },
+                    });
+                  }
+                  function del_article(id){
+                    alert(id);
+                    $.ajax({
+                        url: '/articles/' + id,
+                        type: 'DELETE',
+                        data: {a:'b',c:'d'},
+                        success: function(result) {
+                            alert('del'+id);
+                        },
+                        error: function(result) {
+                            alert('del2'+id);
+                        },
+                    });
+                  }
+                  function put_article(id){
+                    alert(id);
+                    $.ajax({
+                        url: '/articles/' + id,
+                        type: 'PUT',
+                        data: {a:'b',c:'d'},
+                        success: function(result) {
+                            alert('del'+id);
+                        },
+                        error: function(result) {
+                            alert('del2'+id);
+                        },
+                    });
+                  }
+              </script>

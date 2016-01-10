@@ -29,13 +29,14 @@ input[type="text"]:focus,input[type="password"]:focus,textarea:focus{outline:0;b
   line-height: 40px;
   vertical-align: middle;
   padding-left: 50px;
-  background: url(../img/sitelogo-w.png) no-repeat left top;
+  background: url(../img/login32.png) no-repeat left top;
   font-size: 18px;
   color: #fff;
 }
 .header .home .text-mini{
     font-size: 12px;
     color: #82bb24;
+    padding-left: 3px;
 }
 .header .navbar a{
   display: inline-block;
@@ -65,3 +66,38 @@ input[type="text"]:focus,input[type="password"]:focus,textarea:focus{outline:0;b
 .nav-soft{border-color:#bb44bb;}
 .nav-doc{border-color:#82bb24;}
 .nav-res{border-color:#f99921;}
+
+.article-item{
+    position: relative;
+    padding: 25px 0 25px 90px;
+    border-bottom: 1px dashed #ddd;
+}
+.article-item .title{
+    font-size: 18px;
+    line-height: 180%;
+}
+.article-item .excerpt{
+    line-height: 150%;
+    margin-top: 10px;
+    text-indent: 30px;
+}
+.article-item .infobar{
+    line-height: 150%;
+    margin-top: 10px;
+    cursor: default;
+}
+.article-item .infobar>*{
+    padding-right: 15px;
+}
+.text-gray{
+  color: #999;
+}
+.footer{
+  height: 40px;
+  padding: 25px 0;
+  background: #181818;    
+}
+.footer  div{
+     margin: 10px auto;
+     text-align: center;
+}
