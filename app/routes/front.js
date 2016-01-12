@@ -1,8 +1,10 @@
 "use strict";
-var mgdb = require('../js/mgdb.js');
+//var mgdb = require('../js/mgdb.js');
+var mongoose = require('mongoose');
+var Blog = mongoose.model('blog');;
 
 function *index(next) {
-    mgdb.test();
+   // mgdb.test();
     var data = [
       {title:'标题',author:'小强',date:'2015-12-12',reply:13,see:11,
       url:'/articles/12', id:'12',
@@ -20,12 +22,33 @@ function *index(next) {
 }
 function *articles_add(next) {
 	try{
+        var blog = new Blog({
+            uid: 123,
+            username: 'trigkit4'
+        });
+
+        blog.save(function (err) {
+            if(err){
+                this.res.end('Error');
+                return next();
+            }
+        });
         this.body = 'nodjs新增文章:' + 888;
 	}catch(e){
 		console.log("错误:"+e.toString());
 	}
 }
 function *articles_get(next) {
+    // Blog.find({}, function (err, results) {
+    //   if(err){
+    //    this.res.end('Error');
+    //     return next();
+    //   }
+	//   this.body += JSON.stringify(results);
+    //   next();
+    //   //this.res.json(results);//以json数据类型返回值
+    // })
+    // return;
 	try{
 		//yield this.render('index', {title:"极致代理3", list:data});
         this.body = '文章id:' + this.params.id;

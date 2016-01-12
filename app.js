@@ -6,6 +6,11 @@ var logf = require("./config/log4js.js").file();
 // var log4js = require('log4js');
 // log4js.configure(require("./config/log4js.json"));
 let path = require('path');
+let config = require('./config/config');
+let mongoose = require('./app/schema/mgdb.js');
+let db = mongoose();
+require('./app/schema/blog.js');
+//require('../schema/blog.js');
 
 let koa = require('koa');
 var logger = require('koa-logger');
@@ -20,7 +25,6 @@ let staticServer = require('koa-static');
 // let session = require('koa-generic-session');
 // let sessionStore = require('koa-session-mongoose');
 
-let config = require('./config/config');
 let adminRoutes = require('./app/routes/admin/admin');
 let frontRoutes = require('./app/routes/front');
 let response = require('./app/middlewares/response');
