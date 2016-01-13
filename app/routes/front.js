@@ -24,7 +24,12 @@ function *articles_add(next) {
 	try{
         var blog = new Blog({
             uid: 123,
-            username: 'trigkit4'
+            username: 'trigkit4',
+            title:  'titleString',
+            author: 'authorString',
+            body:   'bodyString',
+            reply:0,
+            see:0,
         });
 
         blog.save(function (err) {
@@ -39,16 +44,13 @@ function *articles_add(next) {
 	}
 }
 function *articles_get(next) {
-    // Blog.find({}, function (err, results) {
-    //   if(err){
-    //    this.res.end('Error');
-    //     return next();
-    //   }
-	//   this.body += JSON.stringify(results);
-    //   next();
-    //   //this.res.json(results);//以json数据类型返回值
-    // })
-    // return;
+    var self = this;
+    //var blogs = Blog.find({}, 'title username').skip((1-1)*5).limit(6);
+    var blogs = Blog.find({}).skip((1-1)*5).limit(6);
+    //blogs.sort({time:-1});
+    var docs = yield blogs.exec();
+	yield  self.render('index', {title:"极致代理3", list:docs});
+    return;
 	try{
 		//yield this.render('index', {title:"极致代理3", list:data});
         this.body = '文章id:' + this.params.id;
@@ -65,6 +67,7 @@ function *articles_put(next) {
 }
 function *articles_del(next) {
 	try{
+        var abc = yield Blog.remove({_id:this.params.id}).exec();
         this.body = 'nodejs删除文章:' + this.params.id;
 	}catch(e){
 		console.log("错误:"+e.toString());
