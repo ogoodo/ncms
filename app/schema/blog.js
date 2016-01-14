@@ -29,6 +29,8 @@ blogSchema.statics.findByName = function(name, cb){
     return false;
   }
   return moment(this.date).format('YYYY-MM-DD');
+}).set(function(val) {
+    this.set('date', val);
 });
 var Blog = mongoose.model('blog', blogSchema);
     
