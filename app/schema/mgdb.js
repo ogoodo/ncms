@@ -1,10 +1,16 @@
-var mongoose = require('mongoose');
-var config = require('../../config/config.js');
+var mongoose = require('mongoose'),
+    autoIncrement = require('mongoose-auto-increment'),
+    config = require('../../config/config.js');
+var init = false;
 
 module.exports = function () {
-    var db = mongoose.connect(config.mongodb);//连接数据库
+    var conn = mongoose.connect(config.mongodb);//连接数据库
+    autoIncrement.initialize(conn);
     
-    return db;//返回数据库实例
-};
+    if(!init){
+        init = true;
+        require('../schema/blog.js');
+    }
 
-require('../schema/blog.js');
+    return conn;//返回数据库实例
+};

@@ -11,38 +11,13 @@
     <script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
   </head>
   <body>
-      <div class="header">
-        <div class="box">
-            <a class="home float-left" href='http://www.ogoodo.com/' title="nodeIDE js桌面软件开发">
-                <span>nodeIDE</span>
-                <span class="text-mini">js桌面软件开发</span>
-            </a>
-            <div class="navbar float-right">
-                <a class="nav-blog" href="ogoodo.com/blog">博客</a>
-                <a class="nav-soft" href="ogoodo.com/soft">软件</a>
-                <a class="nav-doc" href="ogoodo.com/doc">文档</a>
-                <a class="nav-res" href="ogoodo.com/res">资源</a>
-            </div>
-        </div>
-      </div>
+      <%- include('header.html', {channel:'soft'}) -%>
       <div class="main">
           <div class="box">
-                <%# include admin/admin.html %>
-              <% include article_list.html %>
-              <%# partial('article_list') %>  
-              <%# include('article_list.html') %>  
+              <% include index_list.html %>
               <% include index_side.html %>             
           </div>
       </div>
-      <div class="footer">
-          <div class="box">
-              <div>
-                  <a href="#">友情链接</a>
-                  <a href="#">友情链接2</a>
-                  <a href="#">友情链接3</a>
-              </div>
-              <div>Copyright © 2016 ogoodo.com  湘ICP备</div>
-          </div>          
-      </div>
+      <%- include('footer.html') -%>
   </body>
 </html>

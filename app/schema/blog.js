@@ -1,6 +1,7 @@
 //var mongoose = require('./mgdb.js');
-var mongoose = require('mongoose');
-var moment = require('moment');
+var mongoose = require('mongoose'),
+    moment = require('moment'),
+    autoIncrement = require('mongoose-auto-increment');
 
 var blogSchema = new mongoose.Schema({
     author: String,
@@ -15,7 +16,14 @@ var blogSchema = new mongoose.Schema({
     }
     //,{collection: "blog"}
  );
- //blogSchema.ensureIndexes(reply);
+ //blogSchema.plugin(autoIncrement.plugin, 'blog');
+ blogSchema.plugin(autoIncrement.plugin,{
+    model: 'blog',
+    //field: 'blogId',
+    startAt: 100,
+    incrementBy: 1
+});
+//blogSchema.ensureIndexes(reply);
  
 blogSchema.methods.speak = function(){
     console.log('我的名字叫'+this.title);
@@ -24,7 +32,7 @@ blogSchema.statics.findByName = function(name, cb){
     this.find({name:new RegExp(name,'i'), cb});
 }
  blogSchema.virtual('day').get(function(){
-  console.log('date = ' + this.date)
+  //console.log('date = ' + this.date)
   if(this.date == undefined || this.date == undefined){
     return false;
   }

@@ -9,6 +9,9 @@ let path = require('path');
 let config = require('./config/config');
 let mongoose = require('./app/schema/mgdb.js');
 let db = mongoose();
+let manage = require('./app/schema/manage.js');
+// manage.dropDatabase();
+// manage.dropCollections();
 require('./app/schema/blog.js');
 //require('../schema/blog.js');
 
