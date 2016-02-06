@@ -1,0 +1,32 @@
+
+<ul class="article-list">
+    {% for item in items %}
+    <li class="article-item" _id='{{ item._id }}'>
+        <div class="channel"></div>
+        <a class="title" target="_black" href='{{ item.url }}'>{{ item.title }}</a>
+        <a class="title" href='{{ item.url }}'>{{ item.url }}</a>
+        <p class="excerpt">{{ item.excerpt }}</p>
+       <div class="infobar text-gray">
+            <a class="text-gray" href='#'><i class="fa fa-user"></i> {{ item.author }}</a>
+            <span><i class="fa fa-clock-o"></i> {{ item.day }}</span>
+            <span><i class="fa fa-comment-o"></i> {{ item.reply }}回复</span>
+            <span><i class="fa fa-eye"></i> {{ item.see }}浏览</span>
+        </div>
+        <div class="infobar text-gray">
+            <a class="text-gray" href="/url/edit/{{ item._id }}">
+                <i class="fa fa-wrench"></i> 编辑
+            </a>
+            <a class="text-gray" href="javascript:void(0);" onclick="delete_article('url','{{ item._id }}')">
+            <!--a class="text-gray" href="/url/delete/{{ item._id }}"-->
+                <i class="fa fa-close"></i> 删除
+            </a>
+            <!--a class="text-gray" href="javascript:void(0);" onclick="add_article({{ item.id }})"-->
+            <a class="text-gray" href="/url/add">
+                <i class="fa fa-check"></i> 添加
+            </a>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<script>
+</script>

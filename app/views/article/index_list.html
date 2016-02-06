@@ -1,0 +1,31 @@
+
+
+<ul class="article-list">
+    {% for item in items %}
+    <li class="media article-item-line" _id='{{ item._id }}'>
+        <a class="media-left media-middle" href="#">
+            <!--span><i class="fa fa-comment-o"></i> {{ item.reply }}回复 </span>
+            <img class="media-object" data-src="holder.js/64x64" alt="Generic placeholder image"-->
+        </a>
+        <div class="media-body">
+            <h3><a class="media-heading" href='/article/{{ item._id }}'>{{ item.title }}</a></h3>
+            <p class="excerpt">{{ item.excerpt }}</p>
+            <div class="infobar text-gray">
+                <a class="p-r-1" href='#'><i class="fa fa-user"></i> {{ item.author }} </a>
+                <span class="p-r-1"><i class="fa fa-clock-o"></i> {{ item.day }} </span>
+                <span class="p-r-1"><i class="fa fa-comment-o"></i> {{ item.reply }}回复 </span>
+                <span class="p-r-1"><i class="fa fa-eye"></i> {{ item.see }}浏览 </span>
+            </div>
+            <div class="infobar text-gray">
+                <a class="p-r-1" href="/article/edit/{{ item._id }}"><i class="fa fa-wrench"></i> 编辑 </a>
+                <a class="p-r-1" href="javascript:void(0);" onclick="delete_article('article', '{{ item._id }}')"><i class="fa fa-close"></i> 删除 </a>
+                <a class="p-r-1" href="/article/add"><i class="fa fa-check"></i> 添加 </a>
+            </div>        
+        </div>
+    </li>  
+    {% endfor %}
+    <li class="text-xs-center">
+        {% include '../page.html' %}
+    </li>
+</ul>
+

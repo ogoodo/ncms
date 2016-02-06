@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> title </title>
+    <meta name="keywords" content="node开发,node ide,js桌面软件开发" />
+    <meta name="description" content="node ide jsIDE开发平台" />
+    {% include "./app/views/header-inc.html" %}
+  </head>
+  <body>
+      {% include "./app/views/header.html" %}
+      <div class="main  p-t-2">
+          <div class="box">
+            {% include './app/views/article/index_list.html' %}
+            {% include './app/views/article/index_side.html' %}
+          </div>
+      </div>
+      {% include './app/views/footer.html' %}
+      {% include "./app/views/footer-inc.html" %}
+  </body>
+</html>

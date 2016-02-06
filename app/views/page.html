@@ -1,0 +1,49 @@
+<nav>
+    <ul class="pagination">
+        <li class="page-item ">
+            {% if pages.prev > 0 %}
+            <a class="page-link" href="/articles/{{pages.prev}}" tabindex="-1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+            {% else %}
+            <div class="page-link" href="#" tabindex="-1" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </div>
+            {% endif %}
+        </li>
+        {% for name, value in pages %}
+            {% if name > 0 %}
+                {% if value.active %}
+                <li class="page-item active"><div class="page-link" href="#">{{name}}</div></li>
+                {% elif value.ellipsis %}
+                <li class="page-item"><div class="page-link" href="#">...</div></li>                        
+                {% else %}
+                <li class="page-item"><a class="page-link" href="/articles/{{name}}">{{name}}</a></li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        <li class="page-item">
+            {% if pages.next > 0 %}
+            <a class="page-link" href="/articles/{{pages.next}}" tabindex="-2" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+            {% else %}
+            <dev class="page-link" href="#" tabindex="-2" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </dev>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
+
+        <!--
+        <li class="page-item">
+            <a class="page-link" href="#">1 <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="page-item  active"><div class="page-link" href="#">2</div></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        -->  
