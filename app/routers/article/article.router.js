@@ -16,6 +16,7 @@ router.delete('/article/:id', controller.delete);
 router.get   ('/article/:id', controller.show);
 //router.get('/article/delete/:id', controller.delete);  
 
+router.get('/articles/tag/:id', controller.tag);
 router.get('/articles/:index', controller.index_page);
 router.get('/articles/', controller.index_page);
 module.exports = router;

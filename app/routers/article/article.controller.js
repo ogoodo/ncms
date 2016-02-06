@@ -1,7 +1,8 @@
 'use strict';
 
 const config = require(process.cwd() + '/config/config.js');
-const ArticleModel = require('./article.model.js');
+const ArticleModel = require('../article/article.model.js');
+const TagModel = require('../tag/tag.model.js');
 var mongoose = require('mongoose');
 const Article = mongoose.model('article');
 
@@ -51,34 +52,25 @@ function makePage(index, count){
     return json;
 }
 class BlogController{
-    // static async index(ctx, next){
-    //     //const docs = await ArticleModel.findAll();
-    //     const docs = await ArticleModel.findPage(2, 3);
-    //     const count = await ArticleModel.count();
-    //     //debugger;
-    //     const obj ={
-    //         items: docs, 
-    //         current_page: 0, 
-    //         count: count, 
-    //         channel: 'blog',        
-    //     }
-    //     await ctx.render('article/index', obj);
-    // }
     static async index_page(ctx, next){
-        //debugger;
         const pageIndex = (+ctx.params.index || 1);
         const countIndex = (pageIndex-1) * config.page_count;
         const docs = await ArticleModel.findPage(countIndex, config.page_count);
         const count = await ArticleModel.count();
         const pageCount = ~~(count/config.page_count +0.999);
-        //debugger;
         const obj ={
             items: docs, 
-            //current_page: pageIndex, 
-            //page_count: pageCount, 
+            channel: 'blog',
             pages: makePage(pageIndex, pageCount),
-            channel: 'blog',            
         }
+        await ctx.render('article/index', obj);
+    }
+    static async tag(ctx, next){
+        const docs = await ArticleModel.findByTag(ctx.params.id);     
+        const obj ={
+            items: docs, 
+            channel: 'blog',
+        }   
         await ctx.render('article/index', obj);
     }
     static async add(ctx, next){
@@ -88,7 +80,7 @@ class BlogController{
         console.log('add }}');
     }
     static async edit(ctx, next){
-        let doc = await ArticleModel.find(ctx.params.id);
+        let doc = await ArticleModel.findById(ctx.params.id);
         doc = doc || {};
         //debugger;
         await ctx.render('article/add', doc._doc);
@@ -104,21 +96,25 @@ class BlogController{
         //await ctx.render('article/add', doc._doc);
     }    
     static async show(ctx, next){
-        const doc = await ArticleModel.find(ctx.params.id);
+        const doc = await ArticleModel.findById(ctx.params.id);
         const ret = await ArticleModel.addOneSee(ctx.params.id);
         await ctx.render('article/show', doc._doc);
     }
     static async save(ctx, next){
         console.log('save {{');
-        var b = ctx.request.body;
+        let b = ctx.request.body;
+        b.tags = b.tags.split(',');
         let doc;
         if(b.id){
             doc = await ArticleModel.update(b.id, 'autxdhor', b.title, b.tags, b.excerpt, b.markdown, b.html);
         }else{
             doc = await ArticleModel.save('autxdhor', b.title, b.tags, b.excerpt, b.markdown, b.html);
         }
+        b.tags.forEach(async (item, index)=>{
+            await TagModel.upsert(item);
+        });
         console.log('save }}' + doc);
-        ctx.redirect('/articles/' + b.id); 
+        ctx.redirect('/article/' + b.id); 
     }
 }
 module.exports = BlogController;

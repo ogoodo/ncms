@@ -1,0 +1,52 @@
+
+<div class="header">
+    <div class="box">
+        <a class="home float-left" href='/' title="nodeIDE js桌面软件开发">
+            <span>nodeIDE</span>
+            <span class="text-mini">js桌面软件开发</span>
+        </a>
+        <div class="navbar float-right">
+            {% if channel=='blog' %}
+            <a class="nav-blog active" href="/articles">博客</a>
+            {% else %}
+            <a class="nav-blog" href="/articles">博客</a>
+            {% endif %}
+            
+            {% if channel=='project' %}
+            <a class="nav-project active" href="ogoodo.com/project">项目</a>
+            {% else %}
+            <a class="nav-project" href="ogoodo.com/project">项目</a>
+            {% endif %}
+            
+            {% if channel=='soft' %}
+            <a class="nav-soft active" href="ogoodo.com/soft">软件</a>
+            {% else %}
+            <a class="nav-soft" href="ogoodo.com/soft">软件</a>
+            {% endif %}
+            
+            {% if channel=='doc' %}
+            <a class="nav-doc active" href="ogoodo.com/doc">文档</a>
+            {% else %}
+            <a class="nav-doc" href="ogoodo.com/doc">文档</a>
+            {% endif %}
+            
+            {% if channel=='res' %}
+            <a class="nav-res active" href="ogoodo.com/res">资源</a>
+            {% else %}
+            <a class="nav-res" href="ogoodo.com/res">资源</a>
+            {% endif %}
+            
+            {% if channel=='url' %}
+            <a class="nav-url active" href="/url">网址</a>
+            {% else %}
+            <a class="nav-url" href="/url">网址</a>
+            {% endif %}         
+            
+            {% if channel=='tags' %}
+            <a class="nav-tags active" href="/tags">标签</a>
+            {% else %}
+            <a class="nav-tags" href="/tags">标签</a>
+            {% endif %}          
+        </div>
+    </div>
+</div>

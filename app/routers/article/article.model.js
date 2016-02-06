@@ -96,13 +96,31 @@ class ArticleModel {
         });
         return promise;
     }
-    static find(id){
+    static findById(id){
         const promise = new Promise((resolve, reject)=>{
             try{
                 console.log('find {{');
                 Article.findById(id, function(err, doc){
                     console.log('find }}');
                     resolve(doc);
+                });
+            }catch(e){
+                console.error("错误:"+e.toString());
+                debugger;
+                reject(1);
+            }
+        });
+        return promise;
+    }
+    static findByTag(id){
+        const promise = new Promise((resolve, reject)=>{
+            try{
+                console.log('findByTag {{');
+                Article.find({})
+                .where('tags').equals(id)
+                .exec(function(err, docs){
+                    console.log('findByTag }}');
+                    resolve(docs);
                 });
             }catch(e){
                 console.error("错误:"+e.toString());
@@ -130,17 +148,16 @@ class ArticleModel {
     }
     static findAll(){
         const promise = new Promise((resolve, reject)=>{
-            try{
-                console.log('findAll {{');
-                Article.find({}, function(err, docs){
-                    console.log('findAll }}');
-                    resolve(docs);
-                });
-            }catch(e){
+            console.log('findAll {{');
+            Article.find({}, function(err, docs){
+                console.log('findAll }}');
+                resolve(docs);
+            })
+            .catch(function(e){
                 console.error("错误:"+e.toString());
                 debugger;
                 reject(1);
-            }
+            });
         });
         return promise;
     }

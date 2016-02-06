@@ -7,7 +7,7 @@ const Router = require('koa-router');
 const router = new Router();
 class Routers{
     static init(app) {
-        const urls = ['blog', 'article', 'url'];
+        const urls = ['blog', 'article', 'url', 'tag'];
         urls.forEach((item, index)=>{
             const r = require(`./${item}/${item}.router.js`);
             router.use('', r.routes(), r.allowedMethods());            

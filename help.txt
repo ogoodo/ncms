@@ -1,0 +1,10 @@
+
+//blog  https://github.com/jackhutu/jackblog-api-koa/blob/master/server/api/comment/index.js
+
+//参考:  https://github.com/Tonyce/Fuck-Experience-API/blob/master/api.js
+//参考: https://github.com/koajs/koa/blob/v2.x/docs/guide.md
+// https://github.com/ckken/KNode/blob/v2/framework/core/express.js
+// http://n.thepana.com/2015/11/25/koa2-0/
+//支持koa 2.x 中间件 https://github.com/wistityhq/strapi/issues/41
+//co index.js 70行加上  return null; 能解决koa-static的一个警告
+
