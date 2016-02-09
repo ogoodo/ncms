@@ -19,6 +19,7 @@ const bodyParser = require('koa-bodyparser');
 const views = require('koa-views'); //支持 jade nunjucks
 //const mongoose = require('mongoose');
 //const autoIncrement = require('mongoose-auto-increment');
+console.log('app init');
 require('./app/schema/DbInit.js').init();
 //const blogRouter = require('./app/routers/blog.router.js');
 const routers = require('./app/routers/routers.js');

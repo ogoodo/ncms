@@ -8,3 +8,5 @@
 //支持koa 2.x 中间件 https://github.com/wistityhq/strapi/issues/41
 //co index.js 70行加上  return null; 能解决koa-static的一个警告
 
+D:\njs\mongodb\mongod.exe --dbpath=d:\njs\mgdb\data
+
