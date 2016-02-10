@@ -101,7 +101,7 @@ class BlogController{
         await ctx.render('article/show', doc._doc);
     }
     static async save(ctx, next){
-        console.log('save {{');
+        console.log('controller.save {{');
         let b = ctx.request.body;
         b.tags = b.tags.split(',');
         let doc;
@@ -110,10 +110,11 @@ class BlogController{
         }else{
             doc = await ArticleModel.save('autxdhor', b.title, b.tags, b.excerpt, b.markdown, b.html);
         }
+        console.log('controller.save 1');
         b.tags.forEach(async (item, index)=>{
             await TagModel.upsert(item);
         });
-        console.log('save }}' + doc);
+        console.log('controller.save }}');
         ctx.redirect('/article/' + b.id); 
     }
 }

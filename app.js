@@ -12,6 +12,7 @@ const app = new Koa();
 const convert = require('koa-convert');
 const koaStatic = require('koa-static');
 const bodyParser = require('koa-bodyparser');
+const session = require('koa-session')
 //const koaStatic = require('./lib/koa-static.js');
 //const render = require('koa-ejs2x');
 //const render = require('koa-ejs');
@@ -28,6 +29,24 @@ app.use(convert(koaStatic(__dirname + '/static')));
 //app.use(co.wrap(koaStatic(__dirname + '/static')));
 //参考: https://github.com/tj/co/pull/256#issuecomment-168475913
 require('bluebird').config({ warnings: false,});//禁止koa-static库一个警告
+
+app.keys = ['some secret hurr'];
+app.use(convert(session(app)));
+function testSession() {
+  console.log('进入 testSession');
+  return async function (ctx, next){
+    console.log('testmg testSession {{');
+    //await next();
+    //debugger;
+    console.log('testmg testSession }}');
+    ctx.cookies.set('nodecookies', 'valuenode');
+    ctx.session.views = ctx.session.views || 0;
+    ctx.session.views ++;
+    ctx.body = ctx.session.views + ' ' + ctx.session.isNew;
+    ctx.body += ' cookies:' + ctx.cookies.get('nodecookies');
+    }
+}
+//app.use(testSession());
 
 // //可以用
 // app.use(nunjucks('views', {
@@ -91,7 +110,11 @@ function testmg(format) {
   return async function (ctx, next){
     console.log('testmg async {{');
     await next();
+    if(ctx.res.statusCode > 400 && ctx.res.statusCode < 500){
+        console.warn(404, ctx.request.origin, ctx.request.originalUrl);
+    }
     console.log('testmg async }}');
+    //debugger;
     }
 }
 app.use(testmg());

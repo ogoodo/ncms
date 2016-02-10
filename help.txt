@@ -10,3 +10,12 @@
 
 D:\njs\mongodb\mongod.exe --dbpath=d:\njs\mgdb\data
 
+
+支持koa2 的项目 
+https://github.com/rkusa/koa-passport/tree/v2.x
+
+
+没测试的项目不知道是否支持koa2
+https://github.com/Chilledheart/koa-session-redis
+
+

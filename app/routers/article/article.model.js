@@ -42,7 +42,7 @@ class ArticleModel {
     }
     static update(id, author, title, tags, excerpt, markdown, html){   
         let blog = {
-            _id: id,
+            //_id: id,
             author: author,
             title: title,
             tags: tags,
@@ -53,14 +53,13 @@ class ArticleModel {
             see:0,
         };
         let promise = new Promise((resolve, reject) => {
-            try{
-                Article.update({_id: blog._id}, blog)
-                .then((doc)=>resolve(doc));
-            }catch(e){
-                console.log("save错误:"+e.toString());
+            Article.update({_id: id}, blog)
+            .then((doc)=>resolve(doc))
+            .catch(function(e){
+                console.log("model.save错误:"+e.toString());
                 debugger;
                 reject(1);
-            }
+            });
         });
         return promise;
     }
