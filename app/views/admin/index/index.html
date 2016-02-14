@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title> title </title>
+    <meta name="keywords" content="node开发,node ide,js桌面软件开发" />
+    <meta name="description" content="node ide jsIDE开发平台" />
+    {% include "./app/views/header-inc.html" %}
+  </head>
+  <body>
+      {% include "./app/views/header.html" %}
+      <div class="main">
+          <div class="box">
+              <div id="tree"></div>
+              <iframe id='rightframe' src="/admin/mongo"></iframe>
+            <!--a href="/admin/drop">删除database</a>
+            <a href="/admin/delete">删除collections</a>
+            <a href="/admin/clear">清除doc</a-->
+          </div>
+      </div>
+        {% include './app/views/url/add-url.html' %}
+      {% include './app/views/footer.html' %}
+      {% include "./app/views/footer-inc.html" %}
+      <script src="/third-party/bootstrap-treeview-1.2.0/bootstrap-treeview.min.js"></script>
+      <script >
+          var tree = [
+  {
+    text: "Parent 1",
+    icon: "fa fa-plane",
+    href: "/articles",
+    nodes: [
+      {
+        text: "Child 1",
+        nodes: [
+          {
+            text: "Grandchild 1"
+          },
+          {
+            text: "Grandchild 2"
+          }
+        ]
+      },
+      {
+        text: "Child 2"
+      }
+    ]
+  },
+  {
+    text: "Parent 2"
+  },
+  {
+    text: "Parent 3"
+  },
+  {
+    text: "Parent 4"
+  },
+  {
+    text: "Parent 5"
+  }
+];
+function getTree() {
+  // Some logic to retrieve, or generate tree structure
+  return tree;
+}
+
+$('#tree').treeview({
+        data: getTree(),
+        expandIcon: "fa fa-plus",
+        collapseIcon: "fa fa-minus",
+        //nodeIcon: "glyphicon glyphicon-user",
+    });
+    $('#tree').on('nodeSelected', function(event, data) {
+        alert(data.href);
+        $('#rightframe').attr("src", data.href); 
+});
+      </script>
+  </body>
+</html>
+

@@ -18,13 +18,14 @@ class ArticleModel {
             see:0,
         });
         let promise = new Promise((resolve, reject) => {
-            try{
-                blog.save().then((doc)=>resolve(doc));
-            }catch(e){
+            blog.save()
+            .then((doc)=>resolve(doc))
+            .catch(function(e){
                 console.log("save错误:"+e.toString());
                 debugger;
                 reject(1);
-            }
+            })
+            ;
         });
         return promise;
     }

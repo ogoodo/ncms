@@ -10,15 +10,10 @@
     {% include "./app/views/header-inc.html" %}
   </head>
   <body>
-      {% include "./app/views/header.html" %}
-      <div class="main  p-t-2">
-          <div class="box">
-            {% include './app/views/article/index_list.html' %}
-            {% include './app/views/article/index_side.html' %}
- 
-          </div>
-      </div>
-      {% include './app/views/footer.html' %}
-      {% include "./app/views/footer-inc.html" %}
+    <a href="/admin/drop">删除database</a>
+    <a href="/admin/delete">删除collections</a>
+    <a href="/admin/clear">清除doc</a>
+    {% include "./app/views/footer-inc.html" %}
   </body>
 </html>
+

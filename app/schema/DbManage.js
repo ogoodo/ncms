@@ -13,7 +13,7 @@ var async    = require('async');
 // 	    mongoose.disconnect();
 //     });
 // });
-
+/*
 class DbManage {
     constructor() {
     }
@@ -73,7 +73,7 @@ class DbManage {
     }
 }
 module.exports = DbManage;
-
+//*/
 // exports.dropDatabase = function(){
 //     //return;
 //     var db = mongoose.connection.db;

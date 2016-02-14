@@ -17,6 +17,7 @@ class Routers{
         });
         const admin = require('./admin/admin.router.js').init();
         router.use('/admin', admin.routes(), admin.allowedMethods());
+        //debugger
         console.log('init router }}');
         // router.use('', blog.routes(), blog.allowedMethods());
         // router.use('', article.routes(), article.allowedMethods());
